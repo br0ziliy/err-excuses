@@ -30,6 +30,7 @@ class Excuses(BotPlugin):
     def _get_devru(self):
         page = self._get_url_text('http://developerexcuses.com/')
         if page:
+            quote = None
             for line in page.split('\n'):
                 if line.lstrip().startswith('initial'):
                     json_data = json_loads(line.split('=')[1].rstrip(','))
