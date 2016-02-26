@@ -33,7 +33,7 @@ class Excuses(BotPlugin):
             quote = None
             for line in page.split('\n'):
                 if line.lstrip().startswith('initial'):
-                    json_data = json_loads(line.split('=')[1].rstrip(','))
+                    json_data = json.loads(line.split('=')[1].rstrip(',\r '))
                     quote = json_data['text']
             if quote:
                 return quote
