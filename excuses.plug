@@ -1,0 +1,9 @@
+[Core]
+Name = Excuses
+Module = excuses
+
+[Documentation]
+Description = An Err plugin to help developers excuses
+
+[Python]
+Version = 2
