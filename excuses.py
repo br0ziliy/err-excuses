@@ -12,19 +12,19 @@ class Excuses(BotPlugin):
         if r.code == 200:
             return r.text
 
-    def _get_qa():
+    def _get_qa(self):
         page = self._get_url_text('http://qaexcuses.com/')
         tree = html.fromstring(page)
         quote = tree.xpath('//a[1]/text()')
         return quote[0]
 
-    def _get_devcom():
+    def _get_devcom(self):
         page = self._get_url_text('http://developerexcuses.com/')
         tree = html.fromstring(page)
         quote = tree.xpath('//a[1]/text()')
         return quote[0]
 
-    def _get_devru():
+    def _get_devru(self):
         page = self._get_url_text('http://developerexcuses.com/')
         for line in page.split('\n'):
             if line.lstrip.startswith('initial'):
@@ -38,8 +38,10 @@ class Excuses(BotPlugin):
     # of whitespace, just like Python's split() does
     @botcmd(split_args_with=None)
     def excuse(self, mess, args):
-        what = args[0]
-        if not what: what = 'devcom'
+        try:
+            what = args[0]
+        except IndexError:
+            what = "devcom"
         try:
             f = getattr(self,"_get_"+what)
         except AttributeError:
