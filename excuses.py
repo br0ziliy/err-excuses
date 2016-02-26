@@ -9,31 +9,35 @@ class Excuses(BotPlugin):
 
     def _get_url_text(self,url):
         r = requests.get(url)
-        if r.code == 200:
+        if r.status_code == 200:
             return r.text
+        return None
 
     def _get_qa(self):
         page = self._get_url_text('http://qaexcuses.com/')
-        tree = html.fromstring(page)
-        quote = tree.xpath('//a[1]/text()')
-        return quote[0]
+        if page:
+            tree = html.fromstring(page)
+            quote = tree.xpath('//a[1]/text()')
+            return quote[0]
 
     def _get_devcom(self):
         page = self._get_url_text('http://developerexcuses.com/')
-        tree = html.fromstring(page)
-        quote = tree.xpath('//a[1]/text()')
-        return quote[0]
+        if page:
+            tree = html.fromstring(page)
+            quote = tree.xpath('//a[1]/text()')
+            return quote[0]
 
     def _get_devru(self):
         page = self._get_url_text('http://developerexcuses.com/')
-        for line in page.split('\n'):
-            if line.lstrip.startswith('initial'):
-                json_data = json_loads(line.split('=')[1].rstrip(','))
-                quote = json_data['text']
-        if quote:
-            return quote
-        else:
-            return "Can't do"
+        if page:
+            for line in page.split('\n'):
+                if line.lstrip.startswith('initial'):
+                    json_data = json_loads(line.split('=')[1].rstrip(','))
+                    quote = json_data['text']
+            if quote:
+                return quote
+            else:
+                return "Can't do"
     # Passing split_args_with=None will cause arguments to be split on any kind
     # of whitespace, just like Python's split() does
     @botcmd(split_args_with=None)
