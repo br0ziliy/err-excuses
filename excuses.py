@@ -7,7 +7,7 @@ from lxml import html
 class Excuses(BotPlugin):
     """An Err plugin skeleton"""
 
-    def _get_url_text(url):
+    def _get_url_text(self,url):
         r = requests.get(url)
         if r.code == 200:
             return r.text
