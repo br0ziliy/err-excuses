@@ -28,7 +28,7 @@ class Excuses(BotPlugin):
             return quote[0]
 
     def _get_devru(self):
-        page = self._get_url_text('http://devasnwers.ru/')
+        page = self._get_url_text('http://devanswers.ru/')
         if page:
             quote = None
             for line in page.split('\n'):
