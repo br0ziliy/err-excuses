@@ -31,7 +31,7 @@ class Excuses(BotPlugin):
         page = self._get_url_text('http://developerexcuses.com/')
         if page:
             for line in page.split('\n'):
-                if line.lstrip.startswith('initial'):
+                if line.lstrip().startswith('initial'):
                     json_data = json_loads(line.split('=')[1].rstrip(','))
                     quote = json_data['text']
             if quote:
