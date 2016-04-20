@@ -1,10 +1,19 @@
-err-skeleton
-============
+err-excuses
+===========
 
-A skeleton for Err plugins. Use this to get started quickly.
+Overview
+--------
 
-Fork & rename, or just download the files, then edit to suit
-your own tastes.
+[Errbot](https://github.com/errbotio/errbot) plugin to fetch developers and QA
+excuses from qaexcuses.com, developerexcuses.com and devanswers.ru.
+
+Commands
+--------
+
+Plugin exposes following commands to a user:
+
+- `excuse [qa|devcom|devru]` - fetch an excuse from specified site. If called
+    without parameters - developerexcuses.com is used.
 
 Licence
 -------

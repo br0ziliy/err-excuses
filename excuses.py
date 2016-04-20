@@ -5,7 +5,7 @@ import requests, json
 from lxml import html
 
 class Excuses(BotPlugin):
-    """An Err plugin skeleton"""
+    """An Err plugin to help developers excuses"""
 
     def _get_url_text(self,url):
         r = requests.get(url)
@@ -43,6 +43,7 @@ class Excuses(BotPlugin):
     # of whitespace, just like Python's split() does
     @botcmd(split_args_with=None)
     def excuse(self, mess, args):
+        """Generate an excuse"""
         try:
             what = args[0]
         except IndexError:
