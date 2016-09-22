@@ -6,4 +6,4 @@ Module = excuses
 Description = An Err plugin to help developers excuses
 
 [Python]
-Version = 2
+Version = 2+
